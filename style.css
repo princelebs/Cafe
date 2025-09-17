@@ -1,0 +1,141 @@
+* {
+    scroll-behavior: smooth;
+}
+
+.font-playfair { font-family: 'Playfair Display', serif; }
+.font-inter { font-family: 'Inter', sans-serif; }
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease;
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(139, 69, 19, 0.15);
+}
+
+.coffee-gradient {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #D2691E 100%);
+}
+
+.coffee-bean {
+    background: radial-gradient(ellipse at center, #654321 0%, #8B4513 70%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+.steam-animation {
+    animation: steam 3s ease-in-out infinite;
+}
+
+@keyframes steam {
+    0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+}
+
+.floating {
+    animation: floating 4s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.coffee-card {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.coffee-card:hover {
+    border-color: #8B4513;
+    background: rgba(139, 69, 19, 0.05);
+}
+
+.menu-category {
+    transition: all 0.3s ease;
+}
+
+.menu-category.active {
+    background: #8B4513;
+    color: white;
+}
+
+.booking-form {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+}
+
+.employee-card {
+    background: linear-gradient(135deg, #F5F5DC 0%, #F0E68C 100%);
+}
+
+.coffee-bean-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.coffee-bean-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(139, 69, 19, 0.1) 2px, transparent 2px),
+        radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.1) 2px, transparent 2px);
+    background-size: 50px 50px;
+    animation: float-beans 20s linear infinite;
+}
+
+@keyframes float-beans {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(-50px, -50px) rotate(360deg); }
+}
+
+.hero-bg {
+    background: linear-gradient(135deg, rgba(139, 69, 19, 0.9) 0%, rgba(160, 82, 45, 0.8) 100%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><pattern id="coffee-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="20" fill="%23654321" opacity="0.1"/></pattern></defs><rect width="1200" height="800" fill="url(%23coffee-pattern)"/></svg>');
+    background-size: cover;
+    background-position: center;
+}

@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pereto Cafe - Premium Coffee Experience</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-lg z-50 border-b border-amber-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="font-playfair text-2xl font-bold gradient-text cursor-pointer" onclick="showPage('home')">
+                    ☕ Pereto Cafe
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="desktop-menu hidden md:flex space-x-8">
+                    <button onclick="showPage('home')" class="nav-link text-gray-700 hover:text-amber-800 font-medium transition-colors">Home</button>
+                    <button onclick="showPage('menu')" class="nav-link text-gray-700 hover:text-amber-800 font-medium transition-colors">Menu</button>
+                    <button onclick="showPage('journey')" class="nav-link text-gray-700 hover:text-amber-800 font-medium transition-colors">Our Journey</button>
+                    <button onclick="showPage('team')" class="nav-link text-gray-700 hover:text-amber-800 font-medium transition-colors">Team</button>
+                    <button onclick="showPage('booking')" class="nav-link text-gray-700 hover:text-amber-800 font-medium transition-colors">Book Table</button>
+                </div>
+                
+                <!-- Cart and Login -->
+                <div class="flex items-center space-x-4">
+                    <button onclick="showCart()" class="relative p-2 text-gray-700 hover:text-amber-800 transition-colors hover:bg-amber-50 rounded-full">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0h9"></path>
+                        </svg>
+                        <span id="cart-count" class="cart-badge">0</span>
+                    </button>
+                    <button onclick="showLogin()" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-6 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                        Login
+                    </button>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button onclick="toggleMobileMenu()" class="mobile-menu md:hidden p-2 text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu-dropdown" class="mobile-menu hidden md:hidden bg-white border-t border-amber-100">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <button onclick="showPage('home')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-800 hover:bg-amber-50 rounded-md transition-colors">Home</button>
+                    <button onclick="showPage('menu')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-800 hover:bg-amber-50 rounded-md transition-colors">Menu</button>
+                    <button onclick="showPage('journey')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-800 hover:bg-amber-50 rounded-md transition-colors">Our Journey</button>
+                    <button onclick="showPage('team')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-800 hover:bg-amber-50 rounded-md transition-colors">Team</button>
+                    <button onclick="showPage('booking')" class="block w-full text-left px-3 py-2 text-gray-700 hover:text-amber-800 hover:bg-amber-50 rounded-md transition-colors">Book Table</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 overflow-hidden">
+            <div class="absolute inset-0 bg-black/10"></div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute top-20 left-10 floating-animation">
+                <div class="w-16 h-16 bg-amber-200 rounded-full opacity-20"></div>
+            </div>
+            <div class="absolute top-40 right-20 floating-animation" style="animation-delay: 1s;">
+                <div class="w-12 h-12 bg-orange-200 rounded-full opacity-30"></div>
+            </div>
+            <div class="absolute bottom-32 left-20 floating-animation" style="animation-delay: 2s;">
+                <div class="w-20 h-20 bg-red-200 rounded-full opacity-15"></div>
+            </div>
+            
+            <div class="relative z-10 text-center px-4 fade-in">
+                <h1 class="font-playfair text-6xl md:text-8xl font-bold gradient-text mb-6">Pereto Cafe</h1>
+                <p class="text-xl md:text-2xl text-gray-700 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Where every cup tells a story of passion, quality, and the perfect blend that brings people together
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showPage('menu')" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-amber-900 hover:to-orange-900 transform hover:scale-105 transition-all duration-300 shadow-xl">
+                        Explore Our Menu
+                    </button>
+                    <button onclick="showPage('booking')" class="border-2 border-amber-800 text-amber-800 px-8 py-4 rounded-full text-lg font-semibold hover:bg-amber-800 hover:text-white transform hover:scale-105 transition-all duration-300">
+                        Book a Table
+                    </button>
+                </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-6 h-6 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4">Why Choose Pereto?</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">Experience the difference that passion and quality make</p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-amber-800 to-orange-800 mx-auto mt-6"></div>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-8 hover-lift bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl border border-amber-100">
+                        <div class="coffee-steam w-20 h-20 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">☕</span>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-semibold mb-4 text-gray-900">Premium Coffee</h3>
+                        <p class="text-gray-600 leading-relaxed">Sourced from the finest coffee farms around the world, roasted to perfection</p>
+                    </div>
+                    <div class="text-center p-8 hover-lift bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl border border-amber-100">
+                        <div class="w-20 h-20 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">🏆</span>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-semibold mb-4 text-gray-900">Award Winning</h3>
+                        <p class="text-gray-600 leading-relaxed">Recognized for excellence in coffee brewing and exceptional customer service</p>
+                    </div>
+                    <div class="text-center p-8 hover-lift bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl border border-amber-100">
+                        <div class="w-20 h-20 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full mx-auto mb-6 flex items-center justify-center shadow-lg">
+                            <span class="text-3xl">🌱</span>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-semibold mb-4 text-gray-900">Sustainable</h3>
+                        <p class="text-gray-600 leading-relaxed">Committed to ethical sourcing and environmental responsibility</p>
+                    </div>
+                </div><br><br>
+
+                
+                            
+
+                                    <!-- Cup -->
+                                    <path d="M40 80 L40 160 Q40 180 60 180 L120 180 Q140 180 140 160 L140 80 Z" 
+                                          fill="url(#cupGradient)" stroke="#92400e" stroke-width="2"/>
+                                    
+                                    <!-- Coffee -->
+                                    <path d="M45 85 L45 155 Q45 170 60 170 L120 170 Q135 170 135 155 L135 85 Z" 
+                                          fill="url(#coffeeGradient)"/>
+                                    
+                                    <!-- Handle -->
+                                    <path d="M140 100 Q160 100 160 120 Q160 140 140 140" 
+                                          fill="none" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+                                    
+                                    <!-- Steam -->
+                                    <g class="steam-animation">
+                                        <path d="M70 75 Q75 65 70 55 Q65 45 70 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                                        </path>
+                                        <path d="M90 75 Q85 65 90 55 Q95 45 90 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                        </path>
+                                        <path d="M110 75 Q115 65 110 55 Q105 45 110 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                        </path>
+                                    </g>
+                                    
+                                    <!-- Gradients -->
+                                    <defs>
+                                        <linearGradient id="cupGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f3f4f6"/>
+                                            <stop offset="100%" style="stop-color:#e5e7eb"/>
+                                        </linearGradient>
+                                        <linearGradient id="coffeeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#92400e"/>
+                                            <stop offset="100%" style="stop-color:#451a03"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                
+                                
+
+                        <!-- Right Side - Experience Features -->
+                        <div class="space-y-8">
+                            <div class="group">
+                                <div class="flex items-start space-x-6 p-6 rounded-3xl bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-100 hover:shadow-xl transition-all duration-500 hover:scale-105">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-amber-800 to-orange-800 rounded-2xl flex items-center justify-center text-2xl shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                                        🌟
+                                    </div>
+                                    <div>
+                                        <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Artisan Crafted</h3>
+                                        <p class="text-gray-600 leading-relaxed">Every cup is meticulously prepared by our skilled baristas using traditional Italian techniques passed down through generations.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <div class="flex items-start space-x-6 p-6 rounded-3xl bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100 hover:shadow-xl transition-all duration-500 hover:scale-105">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-green-600 to-emerald-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                                        🌱
+                                    </div>
+                                    <div>
+                                        <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Ethically Sourced</h3>
+                                        <p class="text-gray-600 leading-relaxed">Direct trade relationships with coffee farmers ensure fair wages and sustainable practices while delivering exceptional quality.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <div class="flex items-start space-x-6 p-6 rounded-3xl bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 hover:shadow-xl transition-all duration-500 hover:scale-105">
+                                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-2xl flex items-center justify-center text-2xl shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                                        🏠
+                                    </div>
+                                    <div>
+                                        <h3 class="font-playfair text-xl font-bold text-gray-900 mb-2">Community Hub</h3>
+                                        <p class="text-gray-600 leading-relaxed">A warm, welcoming space where neighbors become friends and every visit feels like coming home to family.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+</section>
+    </div>
+
+    <!-- Menu Page -->
+    <div id="menu" class="page">
+        <section class="pt-24 pb-20 bg-gradient-to-br from-amber-50 to-orange-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in">
+                    <h1 class="font-playfair text-5xl font-bold gradient-text mb-4">Our Menu</h1>
+                    <p class="text-xl text-gray-700 max-w-2xl mx-auto">Crafted with love, served with passion</p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-amber-800 to-orange-800 mx-auto mt-6"></div>
+                </div>
+
+                <!-- Coffee Menu -->
+                <div class="mb-16">
+                    <h2 class="font-playfair text-3xl font-bold text-center mb-12 text-gray-900">☕ Coffee Selection</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Espresso -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?w=400&h=200&fit=crop&crop=center" alt="Espresso" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Espresso</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Rich, bold, and perfectly extracted Italian tradition. Our signature espresso blend delivers intense flavor with a golden crema.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$3.50</span>
+                                    <button onclick="addToCart('Espresso', 3.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cappuccino -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=200&fit=crop&crop=center" alt="Cappuccino" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Cappuccino</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Creamy foam meets perfect espresso harmony. Equal parts espresso, steamed milk, and velvety microfoam.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$4.25</span>
+                                    <button onclick="addToCart('Cappuccino', 4.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Latte -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1561882468-9110e03e0f78?w=400&h=200&fit=crop&crop=center" alt="Latte" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Latte</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Smooth and creamy coffee perfection. Rich espresso balanced with steamed milk and delicate latte art.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$4.75</span>
+                                    <button onclick="addToCart('Latte', 4.75)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mocha -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="data:image/jpeg;base64,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" alt="Mocha" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Mocha</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Coffee meets chocolate in perfect harmony. Premium espresso with rich chocolate syrup and whipped cream.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$5.25</span>
+                                    <button onclick="addToCart('Mocha', 5.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Iced Coffee -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=400&h=200&fit=crop&crop=center" alt="Iced Coffee" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Iced Coffee</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Refreshing cold brew perfection. Smooth, bold coffee served over ice with your choice of milk.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$4.00</span>
+                                    <button onclick="addToCart('Iced Coffee', 4.00)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Americano -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?w=400&h=200&fit=crop&crop=center" alt="Americano" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Americano</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Espresso with hot water, bold and smooth. A classic coffee experience with full-bodied flavor.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$3.75</span>
+                                    <button onclick="addToCart('Americano', 3.75)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Macchiato -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="data:image/jpeg;base64,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" alt="Macchiato" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Caramel Macchiato</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Vanilla steamed milk marked with espresso and finished with caramel drizzle. Sweet perfection.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$5.50</span>
+                                    <button onclick="addToCart('Caramel Macchiato', 5.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Flat White -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1545665225-b23b99e4d45e?w=400&h=200&fit=crop&crop=center" alt="Flat White" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Flat White</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Double shot espresso with steamed milk and microfoam. Australian coffee culture at its finest.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$4.50</span>
+                                    <button onclick="addToCart('Flat White', 4.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cold Brew -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=200&fit=crop&crop=center" alt="Cold Brew" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Cold Brew</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Slow-steeped for 12 hours, smooth and naturally sweet. Served over ice with optional cream.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$4.25</span>
+                                    <button onclick="addToCart('Cold Brew', 4.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Frappé -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-blue-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=400&h=200&fit=crop&crop=center" alt="Frappé" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Vanilla Frappé</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Blended ice coffee with vanilla syrup and whipped cream. Perfect summer refreshment.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$5.75</span>
+                                    <button onclick="addToCart('Vanilla Frappé', 5.75)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Turkish Coffee -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=200&fit=crop&crop=center" alt="Turkish Coffee" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Turkish Coffee</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Traditional preparation with finely ground coffee, served with Turkish delight. UNESCO heritage.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$4.95</span>
+                                    <button onclick="addToCart('Turkish Coffee', 4.95)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pastries Menu -->
+                <div class="mb-16">
+                    <h2 class="font-playfair text-3xl font-bold text-center mb-12 text-gray-900">🥐 Fresh Pastries & Treats</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <!-- Croissant -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-yellow-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrqmx8h9wt4IlxlVx9f7uN007--MvT36bXFg&s alt="Croissant" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Butter Croissant</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Buttery, flaky French perfection baked fresh daily</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$3.25</span>
+                                    <button onclick="addToCart('Butter Croissant', 3.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Blueberry Muffin -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-blue-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400&h=200&fit=crop&crop=center" alt="Blueberry Muffin" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Blueberry Muffin</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Fresh baked with real blueberries and lemon zest</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$2.75</span>
+                                    <button onclick="addToCart('Blueberry Muffin', 2.75)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chocolate Croissant -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-amber-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="data:image/jpeg;base64,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" alt="Chocolate Croissant" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Pain au Chocolat</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Flaky pastry filled with premium dark chocolate</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$3.95</span>
+                                    <button onclick="addToCart('Pain au Chocolat', 3.95)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cheesecake -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-pink-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?w=400&h=200&fit=crop&crop=center" alt="Cheesecake" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">NY Cheesecake</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Creamy classic with seasonal berry topping</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$4.50</span>
+                                    <button onclick="addToCart('NY Cheesecake', 4.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tiramisu -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-amber-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&h=200&fit=crop&crop=center" alt="Tiramisu" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Tiramisu</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Italian coffee-soaked layers with mascarpone</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$5.25</span>
+                                    <button onclick="addToCart('Tiramisu', 5.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chocolate Cake -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-amber-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=200&fit=crop&crop=center" alt="Chocolate Cake" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Chocolate Cake</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Rich dark chocolate with ganache frosting</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$4.75</span>
+                                    <button onclick="addToCart('Chocolate Cake', 4.75)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cinnamon Roll -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-orange-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=200&fit=crop&crop=center" alt="Cinnamon Roll" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Cinnamon Roll</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Warm spiral pastry with cream cheese glaze</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$3.50</span>
+                                    <button onclick="addToCart('Cinnamon Roll', 3.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scone -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-purple-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=200&fit=crop&crop=center" alt="Scone" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Blueberry Scone</h3>
+                                <p class="text-gray-600 mb-4 text-sm">British-style with fresh blueberries and clotted cream</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$3.25</span>
+                                    <button onclick="addToCart('Blueberry Scone', 3.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Donut -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-pink-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=200&fit=crop&crop=center" alt="Donut" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Glazed Donut</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Classic yeast donut with vanilla glaze</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$2.50</span>
+                                    <button onclick="addToCart('Glazed Donut', 2.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Bagel -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-yellow-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=200&fit=crop&crop=center" alt="Bagel" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Everything Bagel</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Toasted with cream cheese and fresh herbs</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$4.25</span>
+                                    <button onclick="addToCart('Everything Bagel', 4.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Danish -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-16 h-16 bg-red-100 rounded-full -mr-8 -mt-8 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=200&fit=crop&crop=center" alt="Danish" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-lg font-semibold mb-2">Cherry Danish</h3>
+                                <p class="text-gray-600 mb-4 text-sm">Flaky pastry with sweet cherry filling and icing</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xl font-bold gradient-text">$3.75</span>
+                                    <button onclick="addToCart('Cherry Danish', 3.75)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-3 py-1 rounded-full text-sm hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sandwiches & Light Meals -->
+                <div>
+                    <h2 class="font-playfair text-3xl font-bold text-center mb-12 text-gray-900">🥪 Sandwiches & Light Meals</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Avocado Toast -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=200&fit=crop&crop=center" alt="Avocado Toast" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Avocado Toast</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Artisan sourdough with fresh avocado, cherry tomatoes, feta cheese, and herbs</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$8.50</span>
+                                    <button onclick="addToCart('Avocado Toast', 8.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Club Sandwich -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-yellow-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="data:image/jpeg;base64,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" alt="Club Sandwich" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Club Sandwich</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Triple-decker with turkey, bacon, lettuce, tomato, and mayo on toasted bread</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$12.95</span>
+                                    <button onclick="addToCart('Club Sandwich', 12.95)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Caprese Panini -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-red-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1539252554453-80ab65ce3586?w=400&h=200&fit=crop&crop=center" alt="Caprese Panini" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Caprese Panini</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Fresh mozzarella, tomato, basil, and balsamic glaze on ciabatta bread</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$10.50</span>
+                                    <button onclick="addToCart('Caprese Panini', 10.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Grilled Chicken Wrap -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="data:image/jpeg;base64,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" alt="Chicken Wrap" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Grilled Chicken Wrap</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Seasoned chicken breast with mixed greens, tomatoes, and ranch in a spinach tortilla</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$11.95</span>
+                                    <button onclick="addToCart('Grilled Chicken Wrap', 11.95)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BLT Sandwich -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-red-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="data:image/jpeg;base64,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" alt="BLT Sandwich" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Classic BLT</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Crispy bacon, fresh lettuce, ripe tomatoes, and mayo on toasted sourdough</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$9.75</span>
+                                    <button onclick="addToCart('Classic BLT', 9.75)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Veggie Burger -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&h=200&fit=crop&crop=center" alt="Veggie Burger" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Veggie Burger</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">House-made black bean patty with avocado, sprouts, and chipotle mayo on brioche</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$13.25</span>
+                                    <button onclick="addToCart('Veggie Burger', 13.25)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quinoa Salad -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-green-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=200&fit=crop&crop=center" alt="Quinoa Salad" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Mediterranean Quinoa Salad</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Quinoa with cucumber, cherry tomatoes, feta, olives, and lemon vinaigrette</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$11.50</span>
+                                    <button onclick="addToCart('Mediterranean Quinoa Salad', 11.50)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Soup of the Day -->
+                        <div class="bg-white rounded-3xl p-6 hover-lift shadow-xl group overflow-hidden relative border border-amber-100">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-orange-100 rounded-full -mr-10 -mt-10 group-hover:scale-150 transition-transform duration-500"></div>
+                            <div class="relative z-10">
+                                <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=200&fit=crop&crop=center" alt="Soup" class="menu-item-image mb-4">
+                                <h3 class="font-playfair text-xl font-semibold mb-2">Tomato Basil Soup</h3>
+                                <p class="text-gray-600 mb-4 text-sm leading-relaxed">Creamy tomato soup with fresh basil, served with artisan bread and butter</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-2xl font-bold gradient-text">$7.95</span>
+                                    <button onclick="addToCart('Tomato Basil Soup', 7.95)" class="bg-gradient-to-r from-amber-800 to-orange-800 text-white px-4 py-2 rounded-full hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aesthetic Experience Section -->
+                <div class="mb-20">
+                    
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <!-- Left Side - Animated Coffee Cup -->
+                        <div class="relative">
+                                    <!-- Cup -->
+                                    <path d="M40 80 L40 160 Q40 180 60 180 L120 180 Q140 180 140 160 L140 80 Z" 
+                                          fill="url(#cupGradient)" stroke="#92400e" stroke-width="2"/>
+                                    
+                                    <!-- Coffee -->
+                                    <path d="M45 85 L45 155 Q45 170 60 170 L120 170 Q135 170 135 155 L135 85 Z" 
+                                          fill="url(#coffeeGradient)"/>
+                                    
+                                    <!-- Handle -->
+                                    <path d="M140 100 Q160 100 160 120 Q160 140 140 140" 
+                                          fill="none" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+                                    
+                                    <!-- Steam -->
+                                    <g class="steam-animation">
+                                        <path d="M70 75 Q75 65 70 55 Q65 45 70 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                                        </path>
+                                        <path d="M90 75 Q85 65 90 55 Q95 45 90 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                        </path>
+                                        <path d="M110 75 Q115 65 110 55 Q105 45 110 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                        </path>
+                                    </g>
+                                    
+                                    <!-- Gradients -->
+                                    <defs>
+                                        <linearGradient id="cupGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f3f4f6"/>
+                                            <stop offset="100%" style="stop-color:#e5e7eb"/>
+                                        </linearGradient>
+                                        <linearGradient id="coffeeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#92400e"/>
+                                            <stop offset="100%" style="stop-color:#451a03"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                
+        </section>
+    </div>
+
+    <!-- Our Journey Page -->
+    <div id="journey" class="page">
+        <!-- Hero Section -->
+        <section class="pt-24 pb-12 bg-gradient-to-br from-amber-900 via-amber-800 to-orange-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0,0 Q50,30 100,0 L100,100 L0,100 Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center fade-in">
+                    <h1 class="font-playfair text-6xl md:text-7xl font-bold mb-6">Our Journey</h1>
+                    <p class="text-2xl text-amber-100 max-w-3xl mx-auto leading-relaxed">
+                        A tale of passion, tradition, and the perfect cup that brings people together
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4">Our Story</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-amber-800 to-orange-800 mx-auto"></div>
+                </div>
+
+                <div class="relative">
+                    <!-- Timeline line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-amber-200 to-orange-200"></div>
+                    
+                    <!-- Timeline items -->
+                    <div class="space-y-16">
+                        <div class="flex items-center justify-between slide-in">
+                            <div class="w-5/12 text-right pr-8">
+                                <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-3xl shadow-xl hover-lift border border-amber-100">
+                                    <h3 class="font-playfair text-3xl font-bold gradient-text mb-2">1952</h3>
+                                    <h4 class="text-xl font-semibold mb-3 text-gray-900">The Beginning</h4>
+                                    <p class="text-gray-700 leading-relaxed">Giuseppe's grandfather, Antonio Pereto, opens the first family coffee shop in Naples, Italy, establishing our coffee legacy with traditional roasting methods.</p>
+                                </div>
+                            </div>
+                            <div class="w-2/12 flex justify-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">1</div>
+                            </div>
+                            <div class="w-5/12"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between slide-in">
+                            <div class="w-5/12"></div>
+                            <div class="w-2/12 flex justify-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">2</div>
+                            </div>
+                            <div class="w-5/12 pl-8">
+                                <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-3xl shadow-xl hover-lift border border-amber-100">
+                                    <h3 class="font-playfair text-3xl font-bold gradient-text mb-2">1985</h3>
+                                    <h4 class="text-xl font-semibold mb-3 text-gray-900">Second Generation</h4>
+                                    <p class="text-gray-700 leading-relaxed">Giuseppe's father, Marco, expands the business and develops the signature Pereto roasting technique that defines our unique flavor profile and aroma.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between slide-in">
+                            <div class="w-5/12 text-right pr-8">
+                                <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-3xl shadow-xl hover-lift border border-amber-100">
+                                    <h3 class="font-playfair text-3xl font-bold gradient-text mb-2">2018</h3>
+                                    <h4 class="text-xl font-semibold mb-3 text-gray-900">New Horizons</h4>
+                                    <p class="text-gray-700 leading-relaxed">Maria and Giuseppe Pereto bring the family tradition to America, opening Pereto Cafe with a vision to share authentic Italian coffee culture.</p>
+                                </div>
+                            </div>
+                            <div class="w-2/12 flex justify-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">3</div>
+                            </div>
+                            <div class="w-5/12"></div>
+                        </div>
+
+                        <div class="flex items-center justify-between slide-in">
+                            <div class="w-5/12"></div>
+                            <div class="w-2/12 flex justify-center">
+                                <div class="w-16 h-16 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">4</div>
+                            </div>
+                            <div class="w-5/12 pl-8">
+                                <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-8 rounded-3xl shadow-xl hover-lift border border-amber-100">
+                                    <h3 class="font-playfair text-3xl font-bold gradient-text mb-2">Today</h3>
+                                    <h4 class="text-xl font-semibold mb-3 text-gray-900">Community Hub</h4>
+                                    <p class="text-gray-700 leading-relaxed">Pereto Cafe has become more than a coffee shop - it's a community gathering place where stories are shared and friendships are born over exceptional coffee.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="py-20 bg-gradient-to-br from-amber-50 to-orange-100">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4">Our Values</h2>
+                    <p class="text-xl text-gray-700 max-w-3xl mx-auto">The principles that guide everything we do</p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-amber-800 to-orange-800 mx-auto mt-6"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center p-8 bg-white rounded-3xl shadow-xl hover-lift border border-amber-100">
+                        <div class="w-20 h-20 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl shadow-lg">🌱</div>
+                        <h3 class="font-playfair text-xl font-bold mb-4 text-gray-900">Sustainability</h3>
+                        <p class="text-gray-600 leading-relaxed">Committed to ethical sourcing and environmental responsibility in every cup we serve.</p>
+                    </div>
+                    <div class="text-center p-8 bg-white rounded-3xl shadow-xl hover-lift border border-amber-100">
+                        <div class="w-20 h-20 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl shadow-lg">🤝</div>
+                        <h3 class="font-playfair text-xl font-bold mb-4 text-gray-900">Community</h3>
+                        <p class="text-gray-600 leading-relaxed">Building connections and fostering relationships that extend beyond our cafe walls.</p>
+                    </div>
+                    <div class="text-center p-8 bg-white rounded-3xl shadow-xl hover-lift border border-amber-100">
+                        <div class="w-20 h-20 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl shadow-lg">⭐</div>
+                        <h3 class="font-playfair text-xl font-bold mb-4 text-gray-900">Excellence</h3>
+                        <p class="text-gray-600 leading-relaxed">Pursuing perfection in every aspect, from bean selection to customer service.</p>
+                    </div>
+                    <div class="text-center p-8 bg-white rounded-3xl shadow-xl hover-lift border border-amber-100">
+                        <div class="w-20 h-20 bg-gradient-to-br from-amber-800 to-orange-800 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl shadow-lg">❤️</div>
+                        <h3 class="font-playfair text-xl font-bold mb-4 text-gray-900">Passion</h3>
+                        <p class="text-gray-600 leading-relaxed">Every cup is crafted with love and dedication to the art of coffee making.</p>
+                    </div>
+                </div>
+
+                        <!-- Left Side - Animated Coffee Cup -->
+                        <div class="relative">
+                            
+                                <!-- Animated Coffee Cup SVG -->
+                                
+                                    <!-- Cup -->
+                                    <path d="M40 80 L40 160 Q40 180 60 180 L120 180 Q140 180 140 160 L140 80 Z" 
+                                          fill="url(#cupGradient)" stroke="#92400e" stroke-width="2"/>
+                                    
+                                    <!-- Coffee -->
+                                    <path d="M45 85 L45 155 Q45 170 60 170 L120 170 Q135 170 135 155 L135 85 Z" 
+                                          fill="url(#coffeeGradient)"/>
+                                    
+                                    <!-- Handle -->
+                                    <path d="M140 100 Q160 100 160 120 Q160 140 140 140" 
+                                          fill="none" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+                                    
+                                    <!-- Steam -->
+                                    <g class="steam-animation">
+                                        <path d="M70 75 Q75 65 70 55 Q65 45 70 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                                        </path>
+                                        <path d="M90 75 Q85 65 90 55 Q95 45 90 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+                                        </path>
+                                        <path d="M110 75 Q115 65 110 55 Q105 45 110 35" 
+                                              fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                                            <animate attributeName="opacity" values="0;1;0" dur="2s" begin="1s" repeatCount="indefinite"/>
+                                        </path>
+                                    </g>
+                                    
+                                    <!-- Gradients -->
+                                    <defs>
+                                        <linearGradient id="cupGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f3f4f6"/>
+                                            <stop offset="100%" style="stop-color:#e5e7eb"/>
+                                        </linearGradient>
+                                        <linearGradient id="coffeeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#92400e"/>
+                                            <stop offset="100%" style="stop-color:#451a03"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            
+    </section>
+    </div>
+
+    <!-- Team Page -->
+    <div id="team" class="page">
+        <!-- Hero Section -->
+        <section class="pt-24 pb-12 bg-gradient-to-br from-amber-900 via-amber-800 to-orange-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0,100 Q25,80 50,90 Q75,70 100,85 L100,100 Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center fade-in">
+                    <h1 class="font-playfair text-6xl md:text-7xl font-bold mb-6">Our Team</h1>
+                    <p class="text-2xl text-amber-100 max-w-3xl mx-auto leading-relaxed">
+                        Meet the passionate people behind every perfect cup
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4">Meet Our Family</h2>
+                    <p class="text-xl text-gray-700 max-w-3xl mx-auto">The dedicated individuals who make Pereto Cafe special</p>
+                    <div class="w-24 h-1 bg-gradient-to-r from-amber-800 to-orange-800 mx-auto mt-6"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <!-- Team Member 1 -->
+                    <div class="text-center group">
+                        <div class="relative mb-6 overflow-hidden rounded-3xl hover-lift">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&crop=face" alt="Giuseppe Pereto" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Giuseppe Pereto</h3>
+                        <p class="text-amber-800 font-semibold mb-3">Co-Founder & Head Roaster</p>
+                        <p class="text-gray-600 leading-relaxed">Third-generation coffee artisan bringing 70 years of family tradition to every roast. Giuseppe's expertise ensures each bean reaches its perfect potential.</p>
+                    </div>
+
+                    <!-- Team Member 2 -->
+                    <div class="text-center group">
+                        <div class="relative mb-6 overflow-hidden rounded-3xl hover-lift">
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face" alt="Maria Pereto" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Maria Pereto</h3>
+                        <p class="text-amber-800 font-semibold mb-3">Co-Founder & Operations Manager</p>
+                        <p class="text-gray-600 leading-relaxed">The heart of Pereto Cafe's operations, Maria ensures every customer feels welcomed and every detail is perfect, from ambiance to service excellence.</p>
+                    </div>
+
+                    <!-- Team Member 3 -->
+                    <div class="text-center group">
+                        <div class="relative mb-6 overflow-hidden rounded-3xl hover-lift">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face" alt="Marco Silva" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Marco Silva</h3>
+                        <p class="text-amber-800 font-semibold mb-3">Head Barista & Latte Artist</p>
+                        <p class="text-gray-600 leading-relaxed">Award-winning barista and latte art champion, Marco transforms every coffee into a masterpiece, combining technical skill with creative flair.</p>
+                    </div>
+
+                    <!-- Team Member 4 -->
+                    <div class="text-center group">
+                        <div class="relative mb-6 overflow-hidden rounded-3xl hover-lift">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&crop=face" alt="Sofia Chen" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Sofia Chen</h3>
+                        <p class="text-amber-800 font-semibold mb-3">Head Pastry Chef</p>
+                        <p class="text-gray-600 leading-relaxed">Culinary school graduate specializing in European pastries, Sofia creates fresh, artisanal baked goods that perfectly complement our coffee offerings.</p>
+                    </div>
+
+                    <!-- Team Member 5 -->
+                    <div class="text-center group">
+                        <div class="relative mb-6 overflow-hidden rounded-3xl hover-lift">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&crop=face" alt="Alex Rodriguez" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Alex Rodriguez</h3>
+                        <p class="text-amber-800 font-semibold mb-3">Customer Experience Manager</p>
+                        <p class="text-gray-600 leading-relaxed">Dedicated to ensuring every visit exceeds expectations, Alex leads our customer service team and manages our community engagement initiatives.</p>
+                    </div>
+
+                    <!-- Team Member 6 -->
+                    <div class="text-center group">
+                        <div class="relative mb-6 overflow-hidden rounded-3xl hover-lift">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=300&h=300&fit=crop&crop=face" alt="Emma Thompson" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        </div>
+                        <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-2">Emma Thompson</h3>
+                        <p class="text-amber-800 font-semibold mb-3">Sustainability Coordinator</p>
+                        <p class="text-gray-600 leading-relaxed">Environmental advocate ensuring our operations remain eco-friendly, Emma manages our direct trade relationships and sustainability initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-20 bg-gradient-to-br from-amber-800 to-orange-900 text-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="font-playfair text-4xl font-bold mb-6">Join Our Story</h2>
+                <p class="text-xl text-amber-100 mb-8 leading-relaxed">
+                    Every cup you enjoy with us becomes part of our continuing story. We're not just serving coffee; 
+                    we're building relationships, creating memories, and fostering community.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="showPage('menu')" class="bg-white text-amber-800 px-8 py-4 rounded-full font-semibold text-lg hover:bg-amber-50 transform hover:scale-105 transition-all duration-300 shadow-lg">
+                        Experience Our Coffee
+                    </button>
+                    <button onclick="showPage('booking')" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-amber-800 transform hover:scale-105 transition-all duration-300">
+                        Visit Us Today
+                    </button>
+                </div>
+
+                
+        </section>
+    </div>
+
+    <!-- Booking Page -->
+    <div id="booking" class="page">
+        <!-- Hero Section -->
+        <section class="pt-24 pb-12 bg-gradient-to-br from-amber-900 via-amber-800 to-orange-900 text-white relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <path d="M0,100 Q25,80 50,90 Q75,70 100,85 L100,100 Z" fill="currentColor"/>
+                </svg>
+            </div>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center fade-in">
+                    <h1 class="font-playfair text-6xl md:text-7xl font-bold mb-6">Book a Table</h1>
+                    <p class="text-2xl text-amber-100 max-w-3xl mx-auto leading-relaxed">
+                        Reserve your perfect spot and join us for an unforgettable coffee experience
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Booking Form Section -->
+        <section class="py-20 bg-gradient-to-br from-amber-50 to-orange-100">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-start">
+                    <!-- Form -->
+                    <div class="bg-white rounded-3xl p-8 shadow-2xl hover-lift border border-amber-100">
+                        <div class="text-center mb-8">
+                            <h2 class="font-playfair text-3xl font-bold text-gray-900 mb-4">Reservation Details</h2>
+                            <div class="w-16 h-1 bg-gradient-to-r from-amber-800 to-orange-800 mx-auto"></div>
+                        </div>
+
+                        <form id="booking-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">First Name</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300">
+                                </div>
+                                <div class="group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">Last Name</label>
+                                    <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300">
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">Email Address</label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300">
+                            </div>
+
+                            <div class="group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">Phone Number</label>
+                                <input type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300">
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">Preferred Date</label>
+                                    <input type="date" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300">
+                                </div>
+                                <div class="group">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">Preferred Time</label>
+                                    <select required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300">
+                                        <option value="">Select Time</option>
+                                        <option value="08:00">8:00 AM - Breakfast</option>
+                                        <option value="09:00">9:00 AM - Morning Coffee</option>
+                                        <option value="10:00">10:00 AM - Mid-Morning</option>
+                                        <option value="11:00">11:00 AM - Brunch</option>
+                                        <option value="12:00">12:00 PM - Lunch</option>
+                                        <option value="13:00">1:00 PM - Afternoon</option>
+                                        <option value="14:00">2:00 PM - Coffee Break</option>
+                                        <option value="15:00">3:00 PM - Afternoon Tea</option>
+                                        <option value="16:00">4:00 PM - Late Afternoon</option>
+                                        <option value="17:00">5:00 PM - Early Evening</option>
+                                        <option value="18:00">6:00 PM - Evening</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">Party Size</label>
+                                <select required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300">
+                                    <option value="">Select Number of Guests</option>
+                                    <option value="1">1 Guest - Solo Experience</option>
+                                    <option value="2">2 Guests - Intimate Setting</option>
+                                    <option value="3">3 Guests - Small Group</option>
+                                    <option value="4">4 Guests - Family Table</option>
+                                    <option value="5">5 Guests - Friends Gathering</option>
+                                    <option value="6">6 Guests - Large Table</option>
+                                    <option value="7">7 Guests - Group Seating</option>
+                                    <option value="8">8 Guests - Private Corner</option>
+                                </select>
+                            </div>
+
+                            <div class="group">
+                                <label class="block text-sm font-medium text-gray-700 mb-2 group-focus-within:text-amber-800 transition-colors">Special Requests (Optional)</label>
+                                <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300 hover:border-amber-300" placeholder="Birthday celebration, dietary restrictions, seating preferences, or any other special requirements..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-gradient-to-r from-amber-800 to-orange-800 text-white py-4 rounded-xl font-semibold text-lg hover:from-amber-900 hover:to-orange-900 transform hover:scale-105 transition-all duration-300 shadow-xl">
+                                <span class="flex items-center justify-center">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                    Reserve Your Table
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Info Panel -->
+                    <div class="space-y-8">
+                        <!-- Hours & Contact -->
+                        <div class="bg-white rounded-3xl p-8 shadow-xl hover-lift border border-amber-100">
+                            <h3 class="font-playfair text-2xl font-bold text-gray-900 mb-6">Visit Information</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-2">Opening Hours</h4>
+                                        <div class="text-gray-600 space-y-1">
+                                            <p>Monday - Friday: 7:00 AM - 8:00 PM</p>
+                                            <p>Saturday - Sunday: 8:00 AM - 9:00 PM</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-2">Location</h4>
+                                        <p class="text-gray-600">123 Coffee Street<br>Downtown District<br>City, State 12345</p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-6 h-6 text-amber-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold text-gray-900 mb-2">Contact</h4>
+                                        <div class="text-gray-600 space-y-1">
+                                            <p>Phone: (555) 123-CAFE</p>
+                                            <p>Email: hello@peretocafe.com</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reservation Policy -->
+                        <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl p-8 border border-amber-200">
+                            <h3 class="font-playfair text-xl font-bold text-amber-900 mb-4">Reservation Policy</h3>
+                            <div class="text-amber-800 space-y-3 text-sm">
+                                <p>• Reservations are held for 15 minutes past the scheduled time</p>
+                                <p>• Large parties (6+) may require a deposit</p>
+                                <p>• 24-hour cancellation notice appreciated</p>
+                                <p>• Walk-ins welcome based on availability</p>
+                                <p>• Special dietary needs can be accommodated with advance notice</p>
+                            </div>
+                        </div>
+
+                        <!-- Atmosphere Preview -->
+                        <div class="bg-white rounded-3xl p-8 shadow-xl border border-amber-100">
+                            <h3 class="font-playfair text-xl font-bold text-gray-900 mb-4">What to Expect</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="text-center p-4 bg-gray-50 rounded-xl hover-lift">
+                                    <div class="text-2xl mb-2">🎵</div>
+                                    <p class="text-sm text-gray-600">Ambient Jazz Music</p>
+                                </div>
+                                <div class="text-center p-4 bg-gray-50 rounded-xl hover-lift">
+                                    <div class="text-2xl mb-2">📚</div>
+                                    <p class="text-sm text-gray-600">Reading Corner</p>
+                                </div>
+                                <div class="text-center p-4 bg-gray-50 rounded-xl hover-lift">
+                                    <div class="text-2xl mb-2">💻</div>
+                                    <p class="text-sm text-gray-600">Free WiFi</p>
+                                </div>
+                                <div class="text-center p-4 bg-gray-50 rounded-xl hover-lift">
+                                    <div class="text-2xl mb-2">🌿</div>
+                                    <p class="text-sm text-gray-600">Garden Seating</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-playfair text-2xl font-bold gradient-text">Your Order</h2>
+                <button onclick="closeCart()" class="text-gray-500 hover:text-gray-700 p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="cart-items" class="space-y-4 mb-6 max-h-96 overflow-y-auto">
+                <!-- Cart items will be populated here -->
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-semibold text-lg">Total:</span>
+                    <span id="cart-total" class="font-bold text-2xl gradient-text">$0.00</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-gradient-to-r from-amber-800 to-orange-800 text-white py-3 rounded-xl font-semibold hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-playfair text-2xl font-bold gradient-text">Login to Complete Order</h2>
+                <button onclick="closeLogin()" class="text-gray-500 hover:text-gray-700 p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-amber-800 to-orange-800 text-white py-3 rounded-xl font-semibold hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Login & Complete Order
+                </button>
+                <p class="text-center text-sm text-gray-600">
+                    Don't have an account? <button type="button" onclick="showRegister()" class="text-amber-800 hover:underline font-semibold">Sign up here</button>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="register-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="font-playfair text-2xl font-bold gradient-text">Create Account</h2>
+                <button onclick="closeRegister()" class="text-gray-500 hover:text-gray-700 p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="register-form" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                        <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <button type="submit" class="w-full bg-gradient-to-r from-amber-800 to-orange-800 text-white py-3 rounded-xl font-semibold hover:from-amber-900 hover:to-orange-900 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    Create Account & Complete Order
+                </button>
+                <p class="text-center text-sm text-gray-600">
+                    Already have an account? <button type="button" onclick="showLogin()" class="text-amber-800 hover:underline font-semibold">Login here</button>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
